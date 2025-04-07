@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="https://cdn.autodesk.io/favicon.ico">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/inspire-tree-dom@4.0.6/dist/inspire-tree-light.min.css">
+    <link rel="stylesheet" href="/main.css">
+
+    <title>Autodesk Platform Services: Hubs Browser with Design Automation for Fusion</title>
+</head>
+
+<body>
+    <div id="header">
+        <img class="logo" src="https://cdn.autodesk.io/logo/black/stacked.png" alt="Autodesk Platform Services">
+        <span class="title">Hubs Browser with Design Automation for Fusion</span>
+        <a href="https://github.com/adamenagy/aps-configurator-fusion/blob/main/README.md" target="_blank" title="Information about this sample"><i class="bi bi-info-circle"></i></a>
+        <input type="password" name="password" id="pat" placeholder="PAT" title="Personal Access Token" />
+        <button id="login" style="visibility: hidden;" title="Login/Logout">Login</button>
+    </div>
+    <div id="sidebar">
+        <div id="tree"></div>
+    </div>
+    <div id="preview"></div>
+    <script src="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/viewer3D.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/inspire-tree@4.3.1/dist/inspire-tree.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/inspire-tree-dom@4.0.6/dist/inspire-tree-dom.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="/main.js" type="module"></script>
+</body>
+
+</html>

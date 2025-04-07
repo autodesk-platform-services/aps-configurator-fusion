@@ -1,0 +1,20 @@
+{
+  "name": "aps-configurator-fusion",
+  "version": "1.0.0",
+  "description": "Autodesk Platform Services application for configuring Fusion models.",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "autodesk-platform-services"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@aps_sdk/authentication": "^1.0.0",
+    "@aps_sdk/data-management": "^1.0.0",
+    "cookie-session": "^1.4.0",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "uuid": "^11.1.0"
+  }
+}

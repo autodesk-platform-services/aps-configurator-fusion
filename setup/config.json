@@ -1,0 +1,37 @@
+{
+  "credentials": {
+    "clientId": "<client id>",
+    "clientSecret": "<client secret>",
+    "scope": "code:all data:read data:write bucket:create bucket:read bucket:update bucket:delete"
+  },
+  "nickname": "<client id>",
+  "activity": {
+    "id": "ScriptJob",
+    "description": "Activity to run Scripts",
+    "engine": "Autodesk.Fusion+Latest",
+    "alias": "prod",
+    "commandLine": [],
+    "parameters": {
+      "TaskScript": {
+        "verb": "read",
+        "description": "the script to run",
+        "required": true
+      },
+      "TaskParameters": {
+        "verb": "read",
+        "description": "the parameters for the script"
+      },
+      "PersonalAccessToken": {
+        "verb": "read",
+        "description": "the personal access token to use",
+        "required": true
+      },
+      "IsJavaScript": {
+        "verb": "read",
+        "description": "whether the script is JavaScript"
+      }
+    },
+    "appbundles": [],
+    "settings": {}
+  }
+}
