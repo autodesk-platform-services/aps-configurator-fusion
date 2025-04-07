@@ -4,7 +4,7 @@
     "clientSecret": "<client secret>",
     "scope": "code:all data:read data:write bucket:create bucket:read bucket:update bucket:delete"
   },
-  "nickname": "<client id>",
+  "nickname": "<nickname>",
   "activity": {
     "id": "ScriptJob",
     "description": "Activity to run Scripts",
