@@ -1,4 +1,4 @@
-# Configurator for Fusion models
+# Configurator for Fusion models 
 
 Based on the [Hubs Browser Tutorial](https://github.com/autodesk-platform-services/aps-hubs-browser-nodejs/blob/develop/README.md) - have a look at that for more details.
 
