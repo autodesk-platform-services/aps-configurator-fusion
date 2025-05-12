@@ -23,6 +23,8 @@ try {
             loadModel(viewer, window.btoa(fileVersionId).replace(/=/g, ''));
             initDA(fileVersionId, hubId, projectId, folderId, fileItemId, fileName, viewer);
         });
+        const pat = document.getElementById('pat');
+        pat.style.display = 'block';
     } else {
         login.innerText = 'Login';
         login.onclick = () => window.location.replace('/api/auth/login');
