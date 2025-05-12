@@ -23,22 +23,6 @@ try {
             loadModel(viewer, window.btoa(fileVersionId).replace(/=/g, ''));
             initDA(fileVersionId, hubId, projectId, folderId, fileItemId, fileName, viewer);
         });
-        ///////////////////////////
-        /*
-                loadModel(
-                    viewer, 
-                    "dXJuOmFkc2sud2lwcHJvZDpmcy5maWxlOnZmLlRUUWN5S2hVUklpMmE1RDdkMTA5VHc_dmVyc2lvbj0x"
-                );
-                initDA(
-                    "urn:adsk.wipprod:fs.file:vf.TTQcyKhURIi2a5D7d109Tw?version=1", 
-                    "a.YnVzaW5lc3M6YXV0b2Rlc2szNzQz", 
-                    "a.YnVzaW5lc3M6YXV0b2Rlc2szNzQzIzIwMjUwMjIyODgyNjczOTc2",
-                    "urn:adsk.wipprod:fs.folder:co.ZH844-5CR3Ce2hpbilgksQ", 
-                    "urn:adsk.wipprod:dm.lineage:TTQcyKhURIi2a5D7d109Tw", 
-                    "MainComponent",
-                    viewer);
-                    */
-        ///////////////////////////
     } else {
         login.innerText = 'Login';
         login.onclick = () => window.location.replace('/api/auth/login');
