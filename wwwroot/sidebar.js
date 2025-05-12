@@ -57,7 +57,7 @@ export function initTree(selector, onSelectionChanged) {
         }
     });
     tree.on('node.click', function(event, node) {
-        event.preventTreeDefault();
+        event.preventDefault();
         const tokens = node.id.split('|');
         if (tokens[0] === 'version') {
             const [_, hubId, projectId, itemId] = node.itree.parent.id.split('|');
