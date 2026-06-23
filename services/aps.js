@@ -1,6 +1,6 @@
 const { AuthenticationClient, ResponseType } = require('@aps_sdk/authentication');
 const { DataManagementClient } = require('@aps_sdk/data-management');
-const { APS_CLIENT_ID, APS_CLIENT_SECRET, APS_CALLBACK_URL, APS_ACTIVITY, APS_SIGNED_ACTIVITY, INTERNAL_TOKEN_SCOPES, PUBLIC_TOKEN_SCOPES } = require('../config.js');
+const { APS_CLIENT_ID, APS_CLIENT_SECRET, APS_CALLBACK_URL, APS_ACTIVITY, INTERNAL_TOKEN_SCOPES, PUBLIC_TOKEN_SCOPES } = require('../config.js');
 
 const authenticationClient = new AuthenticationClient();
 const dataManagementClient = new DataManagementClient();
