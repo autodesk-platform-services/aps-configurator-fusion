@@ -63,7 +63,6 @@ window.startFetchParams = async () => {
     },
     body: JSON.stringify({
       params: {},
-      pat: document.getElementById('pat').value
     })
   });
   const workItem = await res.json();
@@ -130,7 +129,6 @@ window.startUpdate = async (params) => {
     },
     body: JSON.stringify({
       params,
-      pat: document.getElementById('pat').value
     })
   });
   const workItem = await res.json();
@@ -184,6 +182,16 @@ async function checkUpdateStatus(workItemId) {
     const fileBase64Urn = window.btoa(fileUrn).replace(/=/g, '').replace(/\//g, '_');
     console.log(fileUrn);
     console.log(fileBase64Urn);
+
+    fetch(`/api/md/translate`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        urn: fileBase64Urn,
+      })
+    });
 
     while (true) {
       try {

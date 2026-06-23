@@ -11,7 +11,7 @@ router.use('/api/da', authRefreshMiddleware);
 
 router.post('/api/da/:hubId/:fileItemId', async function (req, res, next) {
     try {
-        const workItem = await runWorkItem(req.params.hubId, req.params.fileItemId, req.body.params, req.body.pat, req.internalOAuthToken.access_token);
+        const workItem = await runWorkItem(req.params.hubId, req.params.fileItemId, req.body.params, req.internalOAuthToken.access_token);
         res.json(workItem);
     } catch (err) {
         next(err);
@@ -20,7 +20,7 @@ router.post('/api/da/:hubId/:fileItemId', async function (req, res, next) {
 
 router.get('/api/da/:workItemId', async function (req, res, next) {
     try {
-        const workItem = await getWorkItemStatus(req.params.workItemId, req.internalOAuthToken.access_token);
+        const workItem = await getWorkItemStatus(req.params.workItemId);
         res.json(workItem);
     } catch (err) {
         next(err);

@@ -24,7 +24,7 @@
       "PersonalAccessToken": {
         "verb": "read",
         "description": "the personal access token to use",
-        "required": true
+        "required": false
       },
       "IsJavaScript": {
         "verb": "read",
