@@ -183,6 +183,16 @@ async function checkUpdateStatus(workItemId) {
     console.log(fileUrn);
     console.log(fileBase64Urn);
 
+    fetch(`/api/md/translate`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        urn: fileBase64Urn,
+      })
+    });
+
     while (true) {
       try {
         const model = await loadModel(_viewer, fileBase64Urn);

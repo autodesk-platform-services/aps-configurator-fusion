@@ -191,3 +191,34 @@ service.getVersionUrnSearch = async (projectId, folderId, fileName, accessToken)
         return files.data[0].id;
     }
 }
+
+service.translateVersion = async (versionUrn, accessToken) => {
+    const body = JSON.stringify({
+        input: {
+            urn: versionUrn
+        },
+        output: {
+            formats: [
+                {
+                    type: "svf",
+                    views: ["2d", "3d"]
+                }
+            ]
+        }
+    });
+
+    const resp = await fetch('https://developer.api.autodesk.com/modelderivative/v2/designdata/job', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`
+        },
+        body 
+    });
+
+    const result = await resp.json();
+
+    console.log(result);
+
+    return result;
+}
