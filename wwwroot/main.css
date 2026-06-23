@@ -39,7 +39,7 @@ body, html {
     margin: 0 0.5em;
 }
 
-#login, #pat {
+#login {
     font-family: ArtifaktElement;
     font-size: 1em;
 }
@@ -51,10 +51,6 @@ body, html {
 
 #tree {
     margin: 0.5em;
-}
-
-#pat {
-    display: none;
 }
 
 @media (max-width: 768px) {

@@ -19,14 +19,7 @@ try {
             };
         }
         const viewer = await initViewer(document.getElementById('preview'));
-        const pat = document.getElementById('pat');
-        pat.style.display = 'block';
         initTree('#tree', (fileVersionId, hubId, projectId, folderId, fileItemId, fileName) => {
-            if (pat.value === '') {
-                alert('Please enter a valid PAT token!\n(click ⓘ next to input box for more info)');
-                return;
-            }
-
             loadModel(viewer, window.btoa(fileVersionId).replace(/=/g, ''));
             initDA(fileVersionId, hubId, projectId, folderId, fileItemId, fileName, viewer);
         });

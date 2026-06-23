@@ -1,6 +1,6 @@
 const { AuthenticationClient, ResponseType } = require('@aps_sdk/authentication');
 const { DataManagementClient } = require('@aps_sdk/data-management');
-const { APS_CLIENT_ID, APS_CLIENT_SECRET, APS_CALLBACK_URL, APS_ACTIVITY, APS_SIGNED_ACTIVITY, INTERNAL_TOKEN_SCOPES, PUBLIC_TOKEN_SCOPES } = require('../config.js');
+const { APS_CLIENT_ID, APS_CLIENT_SECRET, APS_CALLBACK_URL, APS_ACTIVITY, INTERNAL_TOKEN_SCOPES, PUBLIC_TOKEN_SCOPES } = require('../config.js');
 
 const authenticationClient = new AuthenticationClient();
 const dataManagementClient = new DataManagementClient();
@@ -98,9 +98,7 @@ service.getItemVersions = async (projectId, itemId, accessToken) => {
     return resp.data;
 };
 
-service.runWorkItem = async (hubId, fileItemId, params, pat, accessToken) => {
-    //const token = await authenticationClient.getTwoLeggedToken(APS_CLIENT_ID, APS_CLIENT_SECRET, INTERNAL_TOKEN_SCOPES);
-
+service.runWorkItem = async (hubId, fileItemId, params, accessToken) => {
     let taskParams = {
         fileURN: fileItemId,
         hubId: hubId,
@@ -108,17 +106,16 @@ service.runWorkItem = async (hubId, fileItemId, params, pat, accessToken) => {
         parameters: params,
     }
 
+    const token = await authenticationClient.getTwoLeggedToken(APS_CLIENT_ID, APS_CLIENT_SECRET, ["code:all"]);
+
     console.log(JSON.stringify(taskParams, null, 2));
 
     const script = fs.readFileSync('services/da-script-setparams.ts', 'utf8');
 
     const body = JSON.stringify({
         activityId: APS_ACTIVITY,
-        signatures: {
-            activityId: APS_SIGNED_ACTIVITY,
-        },
         arguments: {
-            "PersonalAccessToken": pat,
+            "adsk3LeggedToken": accessToken,
             "TaskParameters": JSON.stringify(taskParams),
             "TaskScript": script
         }
@@ -129,7 +126,7 @@ service.runWorkItem = async (hubId, fileItemId, params, pat, accessToken) => {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${accessToken}`
+            'Authorization': `Bearer ${token.access_token}`
         },
         body 
     });
@@ -141,14 +138,14 @@ service.runWorkItem = async (hubId, fileItemId, params, pat, accessToken) => {
     return workItem;
 }
 
-service.getWorkItemStatus = async (workItemId, accessToken) => {
-    //const token = await authenticationClient.getTwoLeggedToken(APS_CLIENT_ID, APS_CLIENT_SECRET, INTERNAL_TOKEN_SCOPES);
+service.getWorkItemStatus = async (workItemId) => {
+    const token = await authenticationClient.getTwoLeggedToken(APS_CLIENT_ID, APS_CLIENT_SECRET, ["code:all"]);
 
     const resp = await fetch(`https://developer.api.autodesk.com/da/us-east/v3/workitems/${workItemId}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${accessToken}`
+            'Authorization': `Bearer ${token.access_token}`
         }
     });
 
@@ -193,4 +190,35 @@ service.getVersionUrnSearch = async (projectId, folderId, fileName, accessToken)
     if (files.data.length > 0) {
         return files.data[0].id;
     }
+}
+
+service.translateVersion = async (versionUrn, accessToken) => {
+    const body = JSON.stringify({
+        input: {
+            urn: versionUrn
+        },
+        output: {
+            formats: [
+                {
+                    type: "svf",
+                    views: ["2d", "3d"]
+                }
+            ]
+        }
+    });
+
+    const resp = await fetch('https://developer.api.autodesk.com/modelderivative/v2/designdata/job', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`
+        },
+        body 
+    });
+
+    const result = await resp.json();
+
+    console.log(result);
+
+    return result;
 }
