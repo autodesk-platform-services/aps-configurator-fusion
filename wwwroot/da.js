@@ -63,7 +63,6 @@ window.startFetchParams = async () => {
     },
     body: JSON.stringify({
       params: {},
-      pat: document.getElementById('pat').value
     })
   });
   const workItem = await res.json();
@@ -130,7 +129,6 @@ window.startUpdate = async (params) => {
     },
     body: JSON.stringify({
       params,
-      pat: document.getElementById('pat').value
     })
   });
   const workItem = await res.json();

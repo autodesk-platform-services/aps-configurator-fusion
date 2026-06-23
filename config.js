@@ -6,7 +6,7 @@ if (!APS_CLIENT_ID || !APS_CLIENT_SECRET || !APS_CALLBACK_URL || !APS_ACTIVITY |
     console.warn('Missing some of the environment variables.');
     process.exit(1);
 }
-const INTERNAL_TOKEN_SCOPES = [Scopes.CodeAll, Scopes.DataRead, Scopes.ViewablesRead, Scopes.CodeAll];
+const INTERNAL_TOKEN_SCOPES = [Scopes.CodeAll, Scopes.DataRead, Scopes.DataWrite, Scopes.AccountRead, Scopes.ViewablesRead, Scopes.DataCreate, Scopes.DataSearch, "profapi:core-all-profile:read", "openid"];
 const PUBLIC_TOKEN_SCOPES = [Scopes.ViewablesRead];
 PORT = PORT || 8080;
 
